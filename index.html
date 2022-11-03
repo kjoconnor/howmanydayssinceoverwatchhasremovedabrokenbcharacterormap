@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Days Since Blizzard Has Removed a Broken Character or Map from Overwatch</title>
+    <style>
+        p {
+            font-family: arial;
+            font-size: 40px;
+        }
+        
+        #counter {
+            font-family: courier;
+            font-size: 200px;
+            color: red;
+        }
+        
+        #record {
+            font-family: arial;
+            font-size: 60px;
+        }
+    </style>
+    <script type="text/javascript">
+        // Date months are zero indexed
+let removalDates = [
+    new Date(2022, 09, 10), // Bastion & Torb
+    new Date(2022, 10, 01), // Mei
+  ];
+  
+  let latestRemovalDate = removalDates[removalDates.length - 1];
+  
+  function dateDiffToDays(dateDiff) {
+    return Math.abs(Math.floor(dateDiff / (1000 * 60 * 60 * 24)))
+  }
+  
+  let maxDiff = -1;
+  for (let i = 0; i < removalDates.length; i++) {
+    let difference = Math.abs(removalDates[i] - removalDates[i + 1]);
+    if (difference > maxDiff) {
+      maxDiff = difference;
+    }
+  }
+  
+  let maxDaysSinceRemoval = dateDiffToDays(maxDiff);
+  
+  let today = new Date();
+  let daysSinceLastRemoval = dateDiffToDays(latestRemovalDate - today);
+  
+  function fillDates() {
+    document.querySelector("#counter").innerText = daysSinceLastRemoval;
+  
+  document.querySelector("#record").innerText = "Current Record: " + maxDaysSinceRemoval + " days";
+  }
+    </script>
+  </head>
+  <body onload="fillDates()">
+    <p align="center">Days Since Blizzard Has Removed a Broken Character or Map from Overwatch</p>
+  </body>
+  <div id="counter" align="center">
+    
+  </div>
+  <div id="record" align="center">
+  </div>
+
+  <br><br>
+  <center><a href="https://github.com/kjoconnor/howmanydayssinceoverwatchhasremovedabrokencharacterormap"><img src="GitHub-Mark-32px.png"></a></center>
+</html>
